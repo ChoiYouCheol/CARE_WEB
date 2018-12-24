@@ -34,6 +34,12 @@
 	<bean name="mdao" class="com.choi.members.MemberDAO">
 		<property name="template" ref="template"></property>	
 	</bean>
+	<bean name="logoutServiceImpl" class="com.choi.service.member.MLogoutServiceImpl"/>
+	<bean name="loginServiceImpl" class="com.choi.service.member.MLoginServiceImpl">
+		<property name="dao" ref="mdao"/>
+	</bean>
+	
+	<bean name="aop" class="com.choi.aop.AOP"/>
 
 </beans>
 

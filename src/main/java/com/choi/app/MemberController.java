@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,12 @@ import com.choi.service.member.*;
 public class MemberController {
 
 	private Service service;
+	private GenericXmlApplicationContext context;
+	
+	public MemberController() {
+		// TODO Auto-generated constructor stub
+		context = new GenericXmlApplicationContext("classpath:context.xml");
+	}
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -46,7 +53,7 @@ public class MemberController {
 
 		model.addAttribute("request", request);
 
-		service = new MLoginServiceImpl();
+		service = context.getBean("loginServiceImpl", Service.class);
 		service.execute(model);
 
 		Map<String, Object> map = model.asMap();
@@ -78,12 +85,12 @@ public class MemberController {
 			return "redirect:signin_view";
 	}
 
-	@RequestMapping(value="logout", method=RequestMethod.POST)
+	@RequestMapping(value="logout")
 	public String logout(HttpServletRequest request,Model model) {
 
 		model.addAttribute("request", request);
 
-		service = new MLogoutServiceImpl();
+		service = context.getBean("logoutServiceImpl", Service.class);
 		service.execute(model);
 
 		return "redirect:home";

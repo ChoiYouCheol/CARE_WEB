@@ -15,11 +15,8 @@ public class MLoginServiceImpl implements Service{
 	
 	private MemberDAO dao;
 	
-	public MLoginServiceImpl() {
-		// TODO Auto-generated constructor stub
-		GenericXmlApplicationContext context = 
-				new GenericXmlApplicationContext("classpath:context.xml");
-		dao = context.getBean("mdao", MemberDAO.class);
+	public void setDao(MemberDAO dao) {
+		this.dao = dao;
 	}
 
 	@Override
