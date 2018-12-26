@@ -39,6 +39,8 @@ public class MemberController {
 		String formattedDate = dateFormat.format(date);
 
 		model.addAttribute("serverTime", formattedDate );
+		
+		System.out.println("현재 시간 : " + formattedDate);
 
 		return "home/home";
 	}
