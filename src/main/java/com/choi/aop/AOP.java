@@ -43,6 +43,24 @@ public class AOP {
 	public void create_logouttime(ProceedingJoinPoint joinPoint) {
 		try {
 			System.out.println("aop around create_logouttime execute...");
+			
+			Model model = null;
+			for(Object o : joinPoint.getArgs()) {
+				if(o instanceof Model)
+					model = (Model)o;
+			}
+			
+			Map<String, Object> map = model.asMap();
+			HttpServletRequest request = (HttpServletRequest)map.get("request");
+			HttpSession session = request.getSession();
+			Timestamp logintime = (Timestamp)session.getAttribute("logintime");
+			Timestamp logouttime = new Timestamp(System.currentTimeMillis());
+			
+			System.out.println("----------------------------");
+			System.out.println("login time : " + logintime);
+			System.out.println("logout time : " + logouttime);
+			System.out.println("----------------------------");
+			
 			joinPoint.proceed();
 		} catch (Throwable e) {
 			// TODO Auto-generated catch block

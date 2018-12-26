@@ -47,7 +47,7 @@
 					<a href="${pageContext.request.contextPath }/loginview" class="btn btn-primary">로그인</a>
 				</c:when>
 				<c:otherwise>
-					<a href="${pageContext.request.contextPath }/home" class="btn btn-primary">게시판</a>
+					<a href="${pageContext.request.contextPath }/boardview" class="btn btn-primary">게시판</a>
 					<a href="${pageContext.request.contextPath }/logout" class="btn btn-primary">로그아웃</a>
 				</c:otherwise>
 			</c:choose>

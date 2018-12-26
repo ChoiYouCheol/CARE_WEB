@@ -7,6 +7,10 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 
+	<c:if test="${sessionScope.loginUser!=null}">
+		<c:redirect url="${pageContext.request.contextPath }/home"/>
+	</c:if>
+
 	<script type="text/javascript">
 		var regNumber = /^[0-9]*$/;
 		var idOk = false;
@@ -75,7 +79,7 @@
 			<div class="signinInfo" style="margin-left: 28%;">
 				<div class="form-group">
 					<form action="${pageContext.request.contextPath }/signin" method="post" id="doRegister">
-						<table cellspacing="30px" style="width: 80%;">
+						<table style="width: 80%;">
 							<tr>
 								<td width="17%">아이디</td><td width="50%"><input type="text" class="form-control" name="id" id="id" size="44.75" onkeyup="checkId()"></td><td><a id="idText"></a></td>  
 							</tr>
